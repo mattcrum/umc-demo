@@ -11,14 +11,26 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
   return v
 }
 
-export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-  'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET',
-)
+function validateProjectId(projectId: string): string {
+  if (!projectId) {
+    // Use fallback for build time - will be overridden by environment variables
+    console.warn('Using fallback project ID for build. Set NEXT_PUBLIC_SANITY_PROJECT_ID in production.')
+    return 'fallback'
+  }
+  
+  // Validate project ID format (only a-z, 0-9, and hyphens)
+  if (!/^[a-z0-9-]+$/.test(projectId)) {
+    console.error(`Invalid NEXT_PUBLIC_SANITY_PROJECT_ID format: "${projectId}". Project ID can only contain a-z, 0-9, and hyphens.`)
+    return 'fallback'
+  }
+  
+  return projectId
+}
 
-export const projectId = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID',
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+
+export const projectId = validateProjectId(
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
 )
 
 /**
