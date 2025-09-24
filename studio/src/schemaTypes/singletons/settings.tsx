@@ -151,6 +151,119 @@ export const settings = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'heroTitle',
+      title: 'Hero Title',
+      type: 'string',
+      description: 'Main headline for the homepage hero section',
+    }),
+    defineField({
+      name: 'heroDescription',
+      title: 'Hero Description',
+      type: 'text',
+      description: 'Subtitle text for the homepage hero section',
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      description: 'Background image for the hero section',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    }),
+    defineField({
+      name: 'heroVideo',
+      title: 'Hero Background Video',
+      type: 'url',
+      description: 'Optional background video URL for the hero section',
+    }),
+    defineField({
+      name: 'announcement',
+      title: 'Site Announcement',
+      type: 'object',
+      description: 'Optional announcement banner for the top of the site',
+      fields: [
+        defineField({
+          name: 'show',
+          title: 'Show Announcement',
+          type: 'boolean',
+          initialValue: false,
+        }),
+        defineField({
+          name: 'title',
+          title: 'Announcement Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'message',
+          title: 'Announcement Message',
+          type: 'text',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'serviceInfo',
+      title: 'Service Information',
+      type: 'object',
+      description: 'Main service times and location info',
+      fields: [
+        defineField({
+          name: 'times',
+          title: 'Service Times',
+          type: 'array',
+          of: [{type: 'string'}],
+        }),
+        defineField({
+          name: 'location',
+          title: 'Location',
+          type: 'reference',
+          to: [{type: 'location'}],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'contactInfo',
+      title: 'Contact Information',
+      type: 'contactInfo',
+      description: 'Primary contact information for the church',
+    }),
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Media Links',
+      type: 'object',
+      description: 'Links to social media profiles',
+      fields: [
+        defineField({
+          name: 'facebook',
+          title: 'Facebook',
+          type: 'url',
+        }),
+        defineField({
+          name: 'twitter',
+          title: 'Twitter/X',
+          type: 'url',
+        }),
+        defineField({
+          name: 'instagram',
+          title: 'Instagram',
+          type: 'url',
+        }),
+        defineField({
+          name: 'youtube',
+          title: 'YouTube',
+          type: 'url',
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {

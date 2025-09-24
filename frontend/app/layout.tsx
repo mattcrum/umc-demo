@@ -10,6 +10,9 @@ import {Toaster} from 'sonner'
 import DraftModeToast from '@/app/components/DraftModeToast'
 import Footer from '@/app/components/Footer'
 import Header from '@/app/components/Header'
+import {SiteHeader} from '@/components/site-header'
+import {SiteFooter} from '@/components/site-footer'
+import {ThemeProvider} from '@/components/theme-provider'
 import * as demo from '@/sanity/lib/demo'
 import {sanityFetch, SanityLive} from '@/sanity/lib/live'
 import {settingsQuery} from '@/sanity/lib/queries'
@@ -59,12 +62,21 @@ const inter = Inter({
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   const {isEnabled: isDraftMode} = await draftMode()
+  const {data: settings} = await sanityFetch({
+    query: settingsQuery,
+    stega: false,
+  })
 
   return (
-    <html lang="en" className={`${inter.variable} bg-white text-black`}>
-      <body>
-        <section className="min-h-screen pt-24">
-          {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* The <Toaster> component is responsible for rendering toast notifications */}
           <Toaster />
           {isDraftMode && (
             <>
@@ -73,12 +85,40 @@ export default async function RootLayout({children}: {children: React.ReactNode}
               <VisualEditing />
             </>
           )}
-          {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
-          <SanityLive onError={handleError} />
-          <Header />
-          <main className="">{children}</main>
-          <Footer />
-        </section>
+          {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live */}
+          {/* Temporarily disabled to avoid CORS issues in demo mode */}
+          {/* <SanityLive onError={handleError} /> */}
+          
+          <SiteHeader 
+            churchName={settings?.title || demo.title}
+            phone={settings?.contactInfo ? (settings.contactInfo as any)?.phone : undefined}
+            address={settings?.contactInfo ? (settings.contactInfo as any)?.address?.street : undefined}
+          />
+          
+          <main className="min-h-screen">
+            {children}
+          </main>
+          
+          <SiteFooter 
+            churchName={settings?.title || demo.title}
+            phone={settings?.contactInfo ? (settings.contactInfo as any)?.phone : undefined}
+            email={settings?.contactInfo ? (settings.contactInfo as any)?.email : undefined}
+            address={settings?.contactInfo ? (settings.contactInfo as any)?.address?.street : undefined}
+            socialLinks={{
+              facebook: settings?.socialLinks ? (settings.socialLinks as any)?.facebook : undefined,
+              instagram: settings?.socialLinks ? (settings.socialLinks as any)?.instagram : undefined,
+              youtube: settings?.socialLinks ? (settings.socialLinks as any)?.youtube : undefined,
+            }}
+          />
+          
+          {/* Legacy components for draft mode compatibility */}
+          {isDraftMode && (
+            <div className="hidden">
+              <Header />
+              <Footer />
+            </div>
+          )}
+        </ThemeProvider>
         <SpeedInsights />
       </body>
     </html>
