@@ -113,15 +113,7 @@ export function EventsCarousel() {
                 <CarouselItem key={event.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                   <Card className="h-full group hover:shadow-lg transition-all duration-200">
                     <div className="relative overflow-hidden rounded-t-lg">
-                      {event.image && (
-                        <Image
-                          src={event.image}
-                          alt={event.title}
-                          width={400}
-                          height={200}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
-                        />
-                      )}
+                      <div className="w-full h-48 bg-gradient-to-br from-green-100 via-teal-50 to-blue-100 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 group-hover:scale-105 transition-transform duration-200" />
                       <div className="absolute top-4 left-4">
                         <Badge className={categoryColors[event.category as keyof typeof categoryColors] || "bg-gray-100 text-gray-800"}>
                           {event.category}

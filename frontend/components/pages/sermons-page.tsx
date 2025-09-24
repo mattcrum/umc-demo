@@ -333,12 +333,7 @@ export function SermonsPage() {
                     <div className="flex flex-col md:flex-row">
                       {/* Thumbnail */}
                       <div className="relative md:w-64 h-48 md:h-auto overflow-hidden">
-                        <Image
-                          src={sermon.thumbnail}
-                          alt={sermon.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-200"
-                        />
+                        <div className="w-full h-full bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 group-hover:scale-105 transition-transform duration-200" />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                           <Button size="icon" variant="secondary" className="rounded-full">
                             <Play className="h-4 w-4 ml-1" />
@@ -431,12 +426,7 @@ export function SermonsPage() {
               {sermonSeries.map((series) => (
                 <Card key={series.id} className="group hover:shadow-lg transition-all duration-200 overflow-hidden">
                   <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={series.image}
-                      alt={series.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-200"
-                    />
+                    <div className="w-full h-full bg-gradient-to-br from-amber-100 via-orange-50 to-red-100 dark:from-amber-900 dark:via-orange-900 dark:to-red-900 group-hover:scale-105 transition-transform duration-200" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <Badge className={series.status === "current" ? "bg-green-600" : "bg-blue-600"}>

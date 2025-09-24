@@ -259,12 +259,7 @@ export function MinistriesPage() {
               <div key={ministry.id} className={`grid gap-8 lg:grid-cols-2 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
                 {/* Image */}
                 <div className={`relative h-96 overflow-hidden rounded-lg ${!isEven ? 'lg:col-start-2' : ''}`}>
-                  <Image
-                    src={ministry.image}
-                    alt={ministry.title}
-                    fill
-                    className="object-cover"
-                  />
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 via-primary/5 to-background" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <Badge className={`${ministry.bgColor} ${ministry.color} border-0 mb-2`}>

@@ -382,14 +382,7 @@ export function EventsPage() {
             {filteredAndSortedEvents.map((event) => (
               <Card key={event.id} className="group hover:shadow-lg transition-all duration-200 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  {event.image && (
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-200"
-                    />
-                  )}
+                  <div className="w-full h-full bg-gradient-to-br from-green-100 via-teal-50 to-blue-100 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 group-hover:scale-105 transition-transform duration-200" />
                   <div className="absolute top-4 left-4 flex gap-2">
                     <Badge className={categoryColors[event.category as keyof typeof categoryColors] || "bg-gray-100 text-gray-800"}>
                       {event.category}

@@ -82,13 +82,7 @@ export function SermonsSection() {
           <div className="lg:col-span-1">
             <Card className="h-full">
               <div className="relative overflow-hidden rounded-t-lg">
-                <Image
-                  src={currentSeries.image}
-                  alt={currentSeries.title}
-                  width={400}
-                  height={250}
-                  className="w-full h-48 object-cover"
-                />
+                <div className="w-full h-48 bg-gradient-to-br from-amber-100 via-orange-50 to-red-100 dark:from-amber-900 dark:via-orange-900 dark:to-red-900" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <Badge className="mb-2 bg-primary">Current Series</Badge>
@@ -117,12 +111,7 @@ export function SermonsSection() {
                   <div className="flex flex-col md:flex-row">
                     {/* Thumbnail */}
                     <div className="relative md:w-48 h-48 md:h-auto overflow-hidden">
-                      <Image
-                        src={sermon.thumbnail}
-                        alt={sermon.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-200"
-                      />
+                      <div className="w-full h-full bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 group-hover:scale-105 transition-transform duration-200" />
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button size="icon" variant="secondary" className="rounded-full">
                           <Play className="h-4 w-4 ml-1" />

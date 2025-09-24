@@ -119,12 +119,7 @@ export function MinistriesSection() {
             return (
               <Card key={ministry.id} className="group hover:shadow-lg transition-all duration-200 overflow-hidden">
                 <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={ministry.image}
-                    alt={ministry.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-200"
-                  />
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 via-primary/5 to-background group-hover:scale-105 transition-transform duration-200" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <div className="flex items-center gap-2 text-white mb-2">

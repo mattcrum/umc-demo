@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Church, Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -6,13 +8,13 @@ import { Separator } from "@/components/ui/separator"
 
 interface SiteFooterProps {
   churchName?: string
-  phone?: string
-  email?: string
-  address?: string
+  phone?: string | null
+  email?: string | null
+  address?: string | null
   socialLinks?: {
-    facebook?: string
-    instagram?: string
-    youtube?: string
+    facebook?: string | null
+    instagram?: string | null
+    youtube?: string | null
   }
 }
 

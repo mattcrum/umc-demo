@@ -31,7 +31,7 @@ export function HeroSection({
   title = "Welcome Home",
   subtitle = "First United Methodist Church",
   description = "A welcoming community where faith, hope, and love come together. Join us as we worship, grow, and serve together in Christ's name.",
-  backgroundImage = "/hero-bg.jpg",
+  backgroundImage,
   backgroundVideo,
   ctaButtons = [
     { text: "Plan Your Visit", href: "/visit", variant: "default" },

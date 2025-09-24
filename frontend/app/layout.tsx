@@ -101,13 +101,13 @@ export default async function RootLayout({children}: {children: React.ReactNode}
           
           <SiteFooter 
             churchName={settings?.title || demo.title}
-            phone={settings?.contactInfo ? (settings.contactInfo as any)?.phone : undefined}
-            email={settings?.contactInfo ? (settings.contactInfo as any)?.email : undefined}
-            address={settings?.contactInfo ? (settings.contactInfo as any)?.address?.street : undefined}
+            phone={settings?.contactInfo ? (settings.contactInfo as any)?.phone : null}
+            email={settings?.contactInfo ? (settings.contactInfo as any)?.email : null}
+            address={settings?.contactInfo ? (settings.contactInfo as any)?.address?.street : null}
             socialLinks={{
-              facebook: settings?.socialLinks ? (settings.socialLinks as any)?.facebook : undefined,
-              instagram: settings?.socialLinks ? (settings.socialLinks as any)?.instagram : undefined,
-              youtube: settings?.socialLinks ? (settings.socialLinks as any)?.youtube : undefined,
+              facebook: settings?.socialLinks ? (settings.socialLinks as any)?.facebook : null,
+              instagram: settings?.socialLinks ? (settings.socialLinks as any)?.instagram : null,
+              youtube: settings?.socialLinks ? (settings.socialLinks as any)?.youtube : null,
             }}
           />
           
