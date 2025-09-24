@@ -10,9 +10,9 @@ const nextConfig = {
     },
   },
   // Suppress styled-components hydration warnings
-  experimental: {
-    forceSwcTransforms: true,
-  },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
 }
 
 module.exports = nextConfig
