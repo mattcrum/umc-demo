@@ -12,22 +12,25 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
 }
 
 function validateProjectId(projectId: string): string {
-  if (!projectId) {
+  // Trim whitespace and newlines
+  const trimmedProjectId = projectId?.trim()
+  
+  if (!trimmedProjectId) {
     // Use fallback for build time - will be overridden by environment variables
     console.warn('Using fallback project ID for build. Set NEXT_PUBLIC_SANITY_PROJECT_ID in production.')
     return 'fallback'
   }
   
   // Validate project ID format (only a-z, 0-9, and hyphens)
-  if (!/^[a-z0-9-]+$/.test(projectId)) {
-    console.error(`Invalid NEXT_PUBLIC_SANITY_PROJECT_ID format: "${projectId}". Project ID can only contain a-z, 0-9, and hyphens.`)
+  if (!/^[a-z0-9-]+$/.test(trimmedProjectId)) {
+    console.error(`Invalid NEXT_PUBLIC_SANITY_PROJECT_ID format: "${trimmedProjectId}". Project ID can only contain a-z, 0-9, and hyphens.`)
     return 'fallback'
   }
   
-  return projectId
+  return trimmedProjectId
 }
 
-export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET?.trim() || 'production'
 
 export const projectId = validateProjectId(
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
