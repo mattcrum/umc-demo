@@ -1,3 +1,8 @@
-import { defineDisableDraftMode } from 'next-sanity/draft-mode'
+import { draftMode } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-export const { GET } = defineDisableDraftMode()
+export async function GET() {
+  const draft = await draftMode()
+  draft.disable()
+  redirect('/')
+}
