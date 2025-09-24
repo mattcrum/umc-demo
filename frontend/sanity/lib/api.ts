@@ -39,7 +39,7 @@ export const projectId = validateProjectId(
 /**
  * see https://www.sanity.io/docs/api-versioning for how versioning works
  */
-export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-10-28'
+export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION?.trim() || '2024-10-28'
 
 /**
  * Used to configure edit intent links, for Presentation Mode, as well as to configure where the Studio is mounted in the router.
